@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>جاري التحميل...</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<!-- TikTok Pixel -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject = t;
+  var ttq = w[t] = w[t] || [];
+  ttq.methods = ["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
+  ttq.setAndDefer = function(t, e) {
+    t[e] = function() {
+      t.push([e].concat(Array.prototype.slice.call(arguments, 0)))
+    }
+  };
+  for (var i = 0; i < ttq.methods.length; i++) {
+    ttq.setAndDefer(ttq, ttq.methods[i]);
+  }
+  ttq.load = function(e, n) {
+    var r = "https://analytics.tiktok.com/i18n/pixel/events.js";
+    ttq._i = ttq._i || {};
+    ttq._i[e] = [];
+    ttq._i[e]._u = r;
+    ttq._t = ttq._t || {};
+    ttq._t[e] = +new Date;
+    ttq._o = ttq._o || {};
+    ttq._o[e] = n || {};
+    var o = document.createElement("script");
+    o.type = "text/javascript";
+    o.async = !0;
+    o.src = r + "?sdkid=" + e + "&lib=" + t;
+    var a = document.getElementsByTagName("script")[0];
+    a.parentNode.insertBefore(o, a);
+  };
+  ttq.load('D74ULTBC77U71LJAA3FG');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+
+<style>
+:root{
+  --bg:#0d0d0d;--surface:#161616;--card:#1e1e1e;--border:#2c2c2c;
+  --accent:#f5c518;--text:#f0f0f0;--muted:#777;--danger:#ff4d4d;--success:#22c55e;--r:14px
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.top-bar{height:3px;background:linear-gradient(90deg,#f5c518,#f59018,#f5c518);background-size:200%;animation:shimmer 2s infinite linear}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.alert-bar{background:rgba(245,197,24,.08);border-bottom:1px solid rgba(245,197,24,.15);text-align:center;padding:10px 16px;font-size:13px;font-weight:700;color:#f5c518}
+.hero-banner{position:relative;width:100%;overflow:hidden}
+.hero-banner-img{width:100%;height:auto;display:block}
+.hero-banner-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.1) 60%, transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;padding:24px 20px}
+.hero-banner-overlay h1{font-size:clamp(22px,6vw,40px);font-weight:900;line-height:1.25;margin:8px 0 6px}
+.hero-banner-overlay h1 em{color:var(--accent);font-style:normal}
+.hero-banner-overlay .subtitle{color:rgba(255,255,255,.75);font-size:13px;line-height:1.7;max-width:320px}
+.badge{display:inline-block;background:var(--accent);color:#000;font-size:11px;font-weight:900;padding:4px 16px;border-radius:30px;margin-bottom:18px}
+.container{max-width:500px;margin:0 auto;padding:0 16px 80px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-bottom:16px}
+.sec-label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
+.desc-text{font-size:14px;color:#aaa;line-height:1.85;margin-bottom:14px}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.feat{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:13px;font-weight:600}
+.colors-list{display:flex;flex-direction:column;gap:10px}
+.color-opt{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:12px;border:2px solid var(--border);cursor:pointer;transition:all .2s;position:relative}
+.color-opt:hover:not(.sold-out){border-color:var(--accent);background:rgba(245,197,24,.04)}
+.color-opt.active{border-color:var(--accent);background:rgba(245,197,24,.07)}
+.color-opt.sold-out{opacity:.4;cursor:not-allowed}
+.col-thumb{width:120px;height:120px;border-radius:12px;object-fit:cover;flex-shrink:0;border:2px solid var(--border);background:var(--surface)}
+.color-opt.active .col-thumb{border-color:var(--accent)}
+.col-info{flex:1}
+.col-name{font-weight:700;font-size:15px;margin-bottom:2px}
+.col-sub{font-size:12px;color:var(--muted)}
+.stock-tag{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;flex-shrink:0}
+.tag-ok{background:rgba(34,197,94,.15);color:var(--success)}
+.tag-low{background:rgba(255,165,0,.15);color:#f97316}
+.tag-out{background:rgba(255,77,77,.15);color:var(--danger)}
+.check{position:absolute;left:14px;width:22px;height:22px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:#000;font-weight:900;opacity:0;transition:opacity .2s}
+.color-opt.active .check{opacity:1}
+.price-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.price{font-size:30px;font-weight:900;color:var(--accent)}
+.price small{font-size:15px;color:var(--muted);font-weight:400}
+.free-badge{background:rgba(34,197,94,.12);color:var(--success);font-size:13px;font-weight:700;padding:6px 14px;border-radius:20px}
+.form-group{margin-bottom:13px}
+.form-label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px}
+.form-input,.settings-input,.admin-pass,.stock-input{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:13px 15px;color:var(--text);font-family:'Cairo',sans-serif;font-size:15px}
+.form-input:focus,.settings-input:focus,.admin-pass:focus,.stock-input:focus{outline:none;border-color:var(--accent)}
+.form-select{appearance:none;-webkit-appearance:none;cursor:pointer}
+.warn-box{background:rgba(255,77,77,.08);border:1px solid rgba(255,77,77,.25);border-radius:9px;padding:11px 14px;font-size:13px;color:var(--danger);text-align:center;display:none;margin-top:12px}
+.warn-box.show{display:block}
+.cta{width:100%;padding:17px;background:var(--accent);color:#000;font-family:'Cairo',sans-serif;font-size:18px;font-weight:900;border:none;border-radius:12px;cursor:pointer;margin-top:14px}
+.cta:disabled{background:var(--border);color:var(--muted);cursor:not-allowed}
+.trust{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:14px}
+.trust-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);z-index:200;align-items:center;justify-content:center}
+.overlay.open{display:flex}
+.admin-box,.settings-box,.confirm-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:30px;width:90%;max-width:550px;max-height:85vh;overflow-y:auto}
+.admin-btns{display:flex;gap:10px;margin-top:20px}
+.btn-primary{flex:1;background:var(--accent);color:#000;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;border:none;padding:12px;border-radius:10px;cursor:pointer}
+.btn-secondary{padding:12px 18px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'Cairo',sans-serif;border-radius:10px;cursor:pointer}
+.stock-row{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:13px;margin-bottom:10px}
+.stock-swatch{width:28px;height:28px;border-radius:50%;flex-shrink:0}
+.stock-name{flex:1;font-weight:700;font-size:14px}
+.toast{
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-30px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  background: #22c55e;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 24px;
+  border-radius: 40px;
+  z-index: 9999;
+  transition: opacity .35s ease, transform .35s ease, visibility .35s ease;
+}
+.toast.show{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+#admin-btn,#settings-btn{display:none}
+.confirm-line{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
+.confirm-line strong{color:var(--accent)}
+
+/* إخفاء المحتوى حتى تحميل البيانات */
+.content-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.content-visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s ease;
+}
+.loader {
+  text-align: center;
+  padding: 40px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.color-item-editor {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.color-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: var(--accent);
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+<div id="secret-tap" onclick="secretTap()" style="position:fixed;top:0;left:0;right:0;height:50px;z-index:9998;"></div>
+<div class="alert-bar">🔥 عرض محدود — التوصيل مجاني لفترة محدودة!</div>
+
+<div class="hero-banner">
+  <img id="hero-image" src="" alt="كفر موبايل" class="hero-banner-img" style="display:none;">
+  <div class="hero-banner-overlay content-hidden" id="hero-content">
+    <div class="badge">⚡ عرض خاص</div>
+    <h1 id="product-title"><br><em></em></h1>
+    <p class="subtitle" id="product-subtitle"></p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="sec-label">اختر اللون</div>
+    <div id="connecting">⏳ جاري تحميل المنتج...</div>
+    <div class="colors-list" id="colors-list" style="display:none"></div>
+
+    <div style="height:1px;background:var(--border);margin:20px 0"></div>
+
+    <div class="price-row">
+      <div class="price" id="live-price"><small>د.ع</small></div>
+      <div class="free-badge">🚚 توصيل مجاني</div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="f-name">الاسم الكامل</label>
+      <input class="form-input" id="f-name" type="text" placeholder="أدخل اسمك...">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="f-phone">رقم الهاتف</label>
+      <input class="form-input" id="f-phone" type="tel" placeholder="07XXXXXXXXX" maxlength="11" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'').slice(0,11)">
+    </div>
+    <div class="form-group" id="phone-model-group" style="display:none;">
+      <label class="form-label">نوع الهاتف</label>
+      <select class="form-input form-select" id="f-model">
+        <option value="">— اختر نوع هاتفك —</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="f-gov">المحافظة</label>
+      <select class="form-input form-select" id="f-gov">
+        <option value="">— اختر المحافظة —</option>
+        <option>بغداد</option><option>البصرة</option><option>نينوى</option><option>أربيل</option>
+        <option>النجف</option><option>كربلاء</option><option>الأنبار</option><option>ديالى</option>
+        <option>صلاح الدين</option><option>كركوك</option><option>واسط</option><option>بابل</option>
+        <option>القادسية</option><option>ذي قار</option><option>ميسان</option><option>المثنى</option>
+        <option>السليمانية</option><option>دهوك</option><option>حلبجة</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="f-district">المنطقة / الحي</label>
+      <input class="form-input" id="f-district" type="text" placeholder="مثال: الكرادة، المنصور...">
+    </div>
+
+    <div class="warn-box" id="warn-box">⚠️ الرجاء اختيار اللون وتعبئة جميع الحقول</div>
+    <button class="cta" id="order-btn" onclick="submitOrder()" disabled>🛒 اطلب الآن</button>
+
+    <div class="trust">
+      <div class="trust-item">✅ دفع عند الاستلام</div>
+      <div class="trust-item">🔒 بياناتك محفوظة</div>
+      <div class="trust-item">↩️ ضمان الإرجاع</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-label">وصف المنتج</div>
+    <p class="desc-text" id="live-desc"></p>
+    <div class="features">
+      <div class="feat">🛡️ حماية قوية</div>
+      <div class="feat">✨ تصميم راقي</div>
+      <div class="feat">⚡ تركيب سهل</div>
+      <div class="feat">🎨 3 ألوان</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">✅ تم إرسال طلبك بنجاح!</div>
+
+<button id="admin-btn" onclick="openAdmin()" style="position:fixed;bottom:18px;left:18px;background:#161616;border:1px solid #2c2c2c;color:#777;padding:8px 16px;border-radius:30px;cursor:pointer;z-index:99;">⚙️ إدارة</button>
+<button id="settings-btn" onclick="openSettings()" style="position:fixed;bottom:18px;left:120px;background:#161616;border:1px solid #2c2c2c;color:#777;padding:8px 16px;border-radius:30px;cursor:pointer;z-index:99;">✏️ إعدادات</button>
+
+<div class="overlay" id="settings-overlay">
+  <div class="settings-box">
+    <h2 style="color:#f5c518;margin-bottom:10px">✏️ إعدادات الصفحة</h2>
+    <div class="form-group"><label class="form-label">اسم المنتج</label><input class="settings-input" id="s-title" type="text"></div>
+    <div class="form-group"><label class="form-label">اسم الجهاز</label><input class="settings-input" id="s-device" type="text"></div>
+    <div class="form-group"><label class="form-label">الوصف المختصر</label><input class="settings-input" id="s-subtitle" type="text"></div>
+    <div class="form-group"><label class="form-label">السعر</label><input class="settings-input" id="s-price" type="text"></div>
+    <div class="form-group"><label class="form-label">رابط صورة البنر</label><input class="settings-input" id="s-image" type="text"></div>
+    <div class="form-group"><label class="form-label">وصف المنتج الكامل</label><textarea class="settings-input" id="s-desc" rows="4"></textarea></div>
+    <div class="admin-btns">
+      <button class="btn-primary" onclick="saveSettings()">💾 حفظ</button>
+      <button class="btn-secondary" onclick="closeSettings()">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="admin-overlay">
+  <div class="admin-box">
+    <h2 style="color:#f5c518;margin-bottom:10px">⚙️ إدارة المخزون والهواتف والألوان</h2>
+    <input class="admin-pass" id="admin-pass" type="password" placeholder="كلمة السر...">
+    
+    <div style="margin:20px 0 10px; font-weight:bold; color:#f5c518;">📦 المخزون</div>
+    <div id="admin-stock"></div>
+
+    <div style="margin:20px 0 10px; font-weight:bold; color:#f5c518;">📱 أنواع الهواتف</div>
+    <div id="models-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px"></div>
+    <button onclick="addModelRow()" style="width:100%;padding:10px;background:transparent;border:1.5px dashed #2c2c2c;border-radius:9px;color:#777;cursor:pointer; margin-bottom:20px;">
+      + أضف نوع هاتف
+    </button>
+
+    <div style="margin:20px 0 10px; font-weight:bold; color:#f5c518;">🎨 إدارة الألوان والصور</div>
+    <div id="admin-colors" style="margin-bottom:12px"></div>
+    <button onclick="addNewColor()" style="width:100%;padding:10px;background:transparent;border:1.5px dashed #2c2c2c;border-radius:9px;color:#777;cursor:pointer; margin-bottom:20px;">
+      + إضافة لون جديد
+    </button>
+
+    <div class="admin-btns">
+      <button class="btn-primary" onclick="saveAdminData()">💾 حفظ الكل</button>
+      <button class="btn-secondary" onclick="closeAdmin()">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="confirm-overlay">
+  <div class="confirm-box">
+    <h2 style="color:#f5c518;margin-bottom:16px">📦 تأكيد الطلب</h2>
+    <div id="confirm-details"></div>
+    <div class="admin-btns">
+      <button class="btn-primary" id="confirm-btn" onclick="confirmOrderNow()">✅ تأكيد الطلب</button>
+      <button class="btn-secondary" onclick="closeConfirm()">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getDatabase, ref, onValue, runTransaction, push, set, get } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDjT4hQ5dqeV9KjTR4ddKUOdAVIs2juwQU",
+  authDomain: "database-ahk.firebaseapp.com",
+  databaseURL: "https://database-ahk-default-rtdb.firebaseio.com",
+  projectId: "database-ahk",
+  storageBucket: "database-ahk.firebasestorage.app",
+  messagingSenderId: "1056162676459",
+  appId: "1:1056162676459:web:59c4116b3267fa475108ae",
+};
+
+const ADMIN_PASS = "admin123";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxCJov1lA7PPvJEt87y1AUdxFyyGHGNlfIfGiWDt21VCWAHpeHhco9tPZAKu7fgO_hHog/exec";
+
+const DEFAULT_SETTINGS = {
+  title: "",
+  device: "",
+  subtitle: "",
+  price: "",
+  image: "",
+  desc: ""
+};
+const DEFAULT_MODELS = [];
+const DEFAULT_COLORS = {};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const stockRef    = ref(db, "stock");
+const settingsRef = ref(db, "pageSettings");
+const modelsRef   = ref(db, "phoneModels");
+const ordersRef   = ref(db, "orders");
+const colorsRef   = ref(db, "productColors");
+
+let stock = {};
+let pageSettings = { ...DEFAULT_SETTINGS };
+let phoneModels = [];
+let colors = [];
+let selectedColor = null;
+let pendingOrder = null;
+let dataLoaded = false;
+
+// ========== دوال مساعدة عامة ==========
+function setOrderBlockedUI() {
+  const blockedUntil = localStorage.getItem("order_blocked_until");
+  const btn = document.getElementById("order-btn");
+  if (!btn) return;
+  if (blockedUntil && Date.now() < Number(blockedUntil)) {
+    btn.disabled = true;
+    btn.textContent = "✅ تم استلام طلبك";
+    btn.style.background = "var(--border)";
+    btn.style.color = "var(--muted)";
+    btn.style.cursor = "not-allowed";
+  }
+}
+function getCurrentPrice() {
+  const raw = (pageSettings.price || "0").toString().replace(/[^\d]/g, "");
+  return Number(raw || 0);
+}
+function getCurrentProductName() {
+  return `${pageSettings.title || ""} ${pageSettings.device || ""}`.trim();
+}
+function slugifyTikTokId(text) {
+  return (text || "").toString().trim().toLowerCase().replace(/\s+/g, "-").replace(/[^\w\-ء-ي]/g, "");
+}
+function getCurrentContentId() {
+  const title = slugifyTikTokId(pageSettings.title || "case");
+  const device = slugifyTikTokId(pageSettings.device || "device");
+  return `${title}-${device}`;
+}
+function normalizePhoneForTikTok(phone) {
+  if (!phone) return "";
+  let p = phone.replace(/\D/g, "");
+  if (p.startsWith("0") && p.length === 11) p = "964" + p.slice(1);
+  else if (p.startsWith("7") && p.length === 10) p = "964" + p;
+  else if (p.length === 12 && p.startsWith("964")) { /* ok */ }
+  else return "";
+  return "+" + p;
+}
+function generateEventId(prefix = "evt") {
+  return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+}
+function cleanPayload(obj) {
+  Object.keys(obj).forEach(key => {
+    const val = obj[key];
+    if (val === "" || val === null || val === undefined || (Array.isArray(val) && val.length === 0)) delete obj[key];
+  });
+  return obj;
+}
+function formatIQD(n) {
+  try { return Number(n).toLocaleString("en-US"); }
+  catch { return String(n); }
+}
+function showToast(msg = "✅ تم إرسال طلبك بنجاح!") {
+  const toast = document.getElementById("toast");
+  toast.textContent = msg;
+  toast.classList.remove("show");
+  setTimeout(() => {
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 3000);
+  }, 50);
+}
+function trackTikTok(eventName, extra = {}) {
+  if (typeof ttq === "undefined") return;
+  const contentId = getCurrentContentId();
+  const productName = getCurrentProductName();
+  const price = getCurrentPrice();
+  const payload = cleanPayload({
+    event_id: generateEventId(eventName.toLowerCase()),
+    value: price,
+    currency: "IQD",
+    content_type: "product",
+    content_id: contentId,
+    content_ids: [contentId],
+    contents: [{
+      content_id: contentId,
+      content_name: productName,
+      content_type: "product",
+      quantity: 1,
+      price: price,
+      currency: "IQD"
+    }],
+    content_name: productName,
+    quantity: 1,
+    ...extra
+  });
+  ttq.track(eventName, payload);
+  console.log("TikTok Event:", eventName, payload);
+}
+async function sendToGoogleSheet(orderData) {
+  if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("ضع-رابط")) return;
+  try {
+    const res = await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(orderData)
+    });
+    const txt = await res.text();
+    console.log("Google Sheet response:", txt);
+  } catch (err) {
+    console.error("Google Sheet error:", err);
+  }
+}
+
+// ========== عرض البيانات ==========
+function renderSettingsToPage() {
+  const title = pageSettings.title || "";
+  const device = pageSettings.device || "";
+  const subtitle = pageSettings.subtitle || "";
+  const price = pageSettings.price || "";
+  const desc = pageSettings.desc || "";
+  const image = pageSettings.image || "";
+
+  document.getElementById("product-title").innerHTML = title ? `${title}<br><em>${device}</em>` : "جاري التحميل...";
+  document.getElementById("product-subtitle").textContent = subtitle || "";
+  document.getElementById("live-price").innerHTML = price ? `${formatIQD(price)} <small>د.ع</small>` : "";
+  document.getElementById("live-desc").textContent = desc || "";
+  
+  const heroImg = document.getElementById("hero-image");
+  if (image) {
+    heroImg.src = image;
+    heroImg.style.display = "block";
+  } else {
+    heroImg.style.display = "none";
+  }
+
+  const heroContent = document.getElementById("hero-content");
+  if (heroContent && dataLoaded) {
+    heroContent.classList.remove("content-hidden");
+    heroContent.classList.add("content-visible");
+  }
+  
+  // تمكين زر الطلب بعد تحميل البيانات
+  const orderBtn = document.getElementById("order-btn");
+  if (orderBtn && dataLoaded) orderBtn.disabled = false;
+  // فحص إذا الزبون مبلوك
+  setOrderBlockedUI();
+}
+function renderModels() {
+  const sel = document.getElementById("f-model");
+  const grp = document.getElementById("phone-model-group");
+  grp.style.display = phoneModels.length ? "block" : "none";
+  sel.innerHTML = '<option value="">— اختر نوع هاتفك —</option>';
+  phoneModels.forEach(m => {
+    const opt = document.createElement("option");
+    opt.value = m;
+    opt.textContent = m;
+    sel.appendChild(opt);
+  });
+}
+function renderColors() {
+  const list = document.getElementById("colors-list");
+  list.innerHTML = "";
+  if (!colors.length) {
+    list.innerHTML = '<div style="text-align:center;color:var(--muted)">لا توجد ألوان متاحة</div>';
+    document.getElementById("connecting").style.display = "none";
+    document.getElementById("colors-list").style.display = "flex";
+    return;
+  }
+  colors.forEach(c => {
+    const qty = stock[c.id] ?? 0;
+    const out = qty <= 0;
+    const low = qty > 0 && qty <= 3;
+    let tagClass = "tag-ok", tagText = `${qty} قطعة`;
+    if (out) { tagClass="tag-out"; tagText="نفد المخزون"; }
+    else if (low) { tagClass="tag-low"; tagText=`آخر ${qty} قطع!`; }
+    const div = document.createElement("div");
+    div.className = "color-opt" + (out ? " sold-out" : "") + (selectedColor === c.id ? " active" : "");
+    div.onclick = () => !out && selectColor(c.id);
+    div.innerHTML = `
+      <img class="col-thumb" src="${c.img}" alt="${c.name}">
+      <div class="col-info">
+        <div class="col-name">${c.name}</div>
+        <div class="col-sub">${c.sub}</div>
+      </div>
+      <div class="stock-tag ${tagClass}">${tagText}</div>
+      <div class="check">✓</div>
+    `;
+    list.appendChild(div);
+  });
+  document.getElementById("connecting").style.display = "none";
+  document.getElementById("colors-list").style.display = "flex";
+}
+
+// ========== دوال الطلب ==========
+window.selectColor = function(id) {
+  selectedColor = id;
+  renderColors();
+};
+
+window.submitOrder = async function() {
+  // فحص إذا الزبون مبلوك
+  const blockedUntil = localStorage.getItem("order_blocked_until");
+  if (blockedUntil && Date.now() < Number(blockedUntil)) {
+    return;
+  }
+
+  const name = document.getElementById("f-name").value.trim();
+  const phone = document.getElementById("f-phone").value.trim();
+  const model = document.getElementById("f-model").value.trim();
+  const gov = document.getElementById("f-gov").value.trim();
+  const district = document.getElementById("f-district").value.trim();
+  const warn = document.getElementById("warn-box");
+
+  if (!selectedColor || !name || !phone || (phoneModels.length && !model) || !gov || !district) {
+    warn.classList.add("show");
+    return;
+  }
+  if (phone.length !== 11 || !/^07\d{9}$/.test(phone)) {
+    warn.textContent = "⚠️ رقم الهاتف يجب أن يكون 11 رقم ويبدأ بـ 07";
+    warn.classList.add("show");
+    return;
+  }
+  warn.textContent = "⚠️ الرجاء اختيار اللون وتعبئة جميع الحقول";
+  warn.classList.remove("show");
+
+  const colorObj = colors.find(c => c.id === selectedColor);
+  if (!colorObj) { alert("اللون غير موجود"); return; }
+  if ((stock[selectedColor] ?? 0) <= 0) {
+    alert("عذراً، هذا اللون نفد من المخزون.");
+    return;
+  }
+
+  const colorName = colorObj.name;
+  const price = getCurrentPrice();
+  const productName = getCurrentProductName();
+  const contentId = getCurrentContentId();
+  const phoneForTikTok = normalizePhoneForTikTok(phone);
+
+  pendingOrder = {
+    name, phone, phoneForTikTok,
+    model: model || "—",
+    gov, district,
+    address: `${gov} - ${district}`,
+    color: colorName,
+    colorId: selectedColor,
+    price, productName, contentId,
+    timestamp: new Date().toLocaleString("ar-IQ"),
+    status: "confirmed"
+  };
+
+  document.getElementById("confirm-details").innerHTML = `
+    <div class="confirm-line"><span>الاسم</span><strong>${pendingOrder.name}</strong></div>
+    <div class="confirm-line"><span>الهاتف</span><strong>${pendingOrder.phone}</strong></div>
+    <div class="confirm-line"><span>نوع الهاتف</span><strong>${pendingOrder.model}</strong></div>
+    <div class="confirm-line"><span>اللون</span><strong>${pendingOrder.color}</strong></div>
+    <div class="confirm-line"><span>المحافظة</span><strong>${pendingOrder.gov}</strong></div>
+    <div class="confirm-line"><span>المنطقة</span><strong>${pendingOrder.district}</strong></div>
+    <div class="confirm-line"><span>السعر</span><strong>${formatIQD(pendingOrder.price)} د.ع</strong></div>
+  `;
+  document.getElementById("confirm-overlay").classList.add("open");
+};
+
+window.closeConfirm = function() {
+  document.getElementById("confirm-overlay").classList.remove("open");
+};
+
+window.confirmOrderNow = async function() {
+  if (!pendingOrder) return;
+  const btn = document.getElementById("confirm-btn");
+  btn.disabled = true;
+  btn.textContent = "⏳ جاري الإرسال...";
+  try {
+    trackTikTok("AddToCart", {
+      phone_number: pendingOrder.phoneForTikTok,
+      phone_model: pendingOrder.model,
+      color: pendingOrder.color,
+      region: pendingOrder.gov
+    });
+    trackTikTok("InitiateCheckout", {
+      phone_number: pendingOrder.phoneForTikTok,
+      phone_model: pendingOrder.model,
+      color: pendingOrder.color,
+      region: pendingOrder.gov
+    });
+
+    const colRef = ref(db, `stock/${pendingOrder.colorId}`);
+    let success = false;
+    await runTransaction(colRef, current => {
+      if (current == null || current <= 0) return;
+      return current - 1;
+    }).then(res => success = res.committed);
+    if (!success) {
+      alert("نفد المخزون أثناء الطلب.");
+      closeConfirm();
+      return;
+    }
+
+    await push(ordersRef, pendingOrder);
+    await sendToGoogleSheet(pendingOrder);
+
+    trackTikTok("Purchase", {
+      phone_number: pendingOrder.phoneForTikTok,
+      phone_model: pendingOrder.model,
+      color: pendingOrder.color,
+      region: pendingOrder.gov,
+      status: "confirmed"
+    });
+
+    document.getElementById("f-name").value = "";
+    document.getElementById("f-phone").value = "";
+    document.getElementById("f-model").value = "";
+    document.getElementById("f-gov").value = "";
+    document.getElementById("f-district").value = "";
+    selectedColor = null;
+    renderColors();
+    closeConfirm();
+    pendingOrder = null;
+
+    // منع الزبون 24 ساعة
+    const blockUntil = Date.now() + 24 * 60 * 60 * 1000;
+    localStorage.setItem("order_blocked_until", blockUntil);
+    setOrderBlockedUI();
+
+    showToast("✅ تم إرسال طلبك! جاري تحويلك للواتساب...");
+
+    // بناء رسالة واتساب
+    const waMsg = `طلب جديد من متجر جيكور ستور 🛍️\n\n👤 الاسم: ${pendingOrder.name}\n📱 نوع الهاتف: ${pendingOrder.model}\n🎨 اللون: ${pendingOrder.color}\n📍 المحافظة: ${pendingOrder.gov}\n🏘️ المنطقة: ${pendingOrder.district}\n💰 السعر: ${formatIQD(pendingOrder.price)} د.ع (شامل التوصيل)\n\nأرسل 1️⃣ لتثبيت طلبك\nأرسل 2️⃣ لإلغاء طلبك`;
+
+    // التحويل لواتساب بعد ثانيتين
+    setTimeout(() => {
+      window.open(`https://wa.me/9647759727565?text=${encodeURIComponent(waMsg)}`, `_blank`);
+    }, 2000);
+  } catch (err) {
+    console.error("Order error:", err);
+    alert("حدث خطأ أثناء إرسال الطلب، يرجى المحاولة مرة أخرى.");
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "✅ تأكيد الطلب";
+  }
+};
+
+// ========== واجهة الإدارة ==========
+window.secretTap = function() {
+  window._tapCount = (window._tapCount || 0) + 1;
+  clearTimeout(window._tapTimer);
+  window._tapTimer = setTimeout(() => window._tapCount = 0, 2000);
+  if (window._tapCount >= 5) {
+    window._tapCount = 0;
+    const adminBtn = document.getElementById("admin-btn");
+    const settingsBtn = document.getElementById("settings-btn");
+    const visible = adminBtn.style.display === "block";
+    adminBtn.style.display = visible ? "none" : "block";
+    settingsBtn.style.display = visible ? "none" : "block";
+  }
+};
+
+window.openSettings = function() {
+  const pass = prompt("أدخل كلمة السر:");
+  if (pass !== ADMIN_PASS) return alert("كلمة السر غلط!");
+  document.getElementById("s-title").value = pageSettings.title || "";
+  document.getElementById("s-device").value = pageSettings.device || "";
+  document.getElementById("s-subtitle").value = pageSettings.subtitle || "";
+  document.getElementById("s-price").value = pageSettings.price || "";
+  document.getElementById("s-image").value = pageSettings.image || "";
+  document.getElementById("s-desc").value = pageSettings.desc || "";
+  document.getElementById("settings-overlay").classList.add("open");
+};
+window.closeSettings = function() {
+  document.getElementById("settings-overlay").classList.remove("open");
+};
+window.saveSettings = async function() {
+  const newSettings = {
+    title: document.getElementById("s-title").value.trim(),
+    device: document.getElementById("s-device").value.trim(),
+    subtitle: document.getElementById("s-subtitle").value.trim(),
+    price: document.getElementById("s-price").value.trim(),
+    image: document.getElementById("s-image").value.trim(),
+    desc: document.getElementById("s-desc").value.trim()
+  };
+  await set(settingsRef, newSettings);
+  closeSettings();
+  showToast("💾 تم حفظ إعدادات الصفحة");
+};
+
+window.openAdmin = function() {
+  const pass = prompt("أدخل كلمة السر:");
+  if (pass !== ADMIN_PASS) return alert("كلمة السر غلط!");
+  document.getElementById("admin-pass").value = "";
+  // عرض المخزون
+  document.getElementById("admin-stock").innerHTML = colors.map(c => `
+    <div class="stock-row">
+      <div class="stock-swatch" style="background:#ccc;border:2px solid #2c2c2c"></div>
+      <div class="stock-name">${c.name}</div>
+      <input class="stock-input" id="as_${c.id}" type="number" min="0" value="${stock[c.id] ?? 0}">
+    </div>
+  `).join("");
+
+  // عرض أنواع الهواتف
+  renderModelRows(phoneModels);
+  renderColorRows(colors);
+  document.getElementById("admin-overlay").classList.add("open");
+};
+
+function renderModelRows(models) {
+  const list = document.getElementById("models-list");
+  list.innerHTML = "";
+  models.forEach(m => {
+    const row = document.createElement("div");
+    row.style.cssText = "display:flex;gap:8px;align-items:center";
+    row.innerHTML = `
+      <input class="stock-input model-input" type="text" value="${m}" style="flex:1">
+      <button onclick="this.parentElement.remove()" style="background:rgba(255,77,77,.15);border:none;color:#ff4d4d;border-radius:8px;padding:8px 12px;cursor:pointer">✕</button>
+    `;
+    list.appendChild(row);
+  });
+}
+
+function renderColorRows(colorsArray) {
+  const container = document.getElementById("admin-colors");
+  container.innerHTML = "";
+  colorsArray.forEach((c, idx) => {
+    const div = document.createElement("div");
+    div.className = "color-item-editor";
+    div.setAttribute("data-color-id", c.id);
+    div.innerHTML = `
+      <div class="color-editor-header">
+        <span>🎨 ${c.name}</span>
+        <button class="btn-secondary" style="padding:4px 12px;" onclick="deleteColor('${c.id}')">🗑️ حذف</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px;">
+        <input class="stock-input color-name-input" type="text" placeholder="اسم اللون" value="${c.name}" data-color-id="${c.id}" data-field="name">
+        <input class="stock-input color-sub-input" type="text" placeholder="النص الفرعي" value="${c.sub}" data-color-id="${c.id}" data-field="sub">
+        <input class="stock-input color-img-input" type="text" placeholder="رابط الصورة" value="${c.img}" data-color-id="${c.id}" data-field="img">
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+window.addModelRow = function() {
+  const list = document.getElementById("models-list");
+  const row = document.createElement("div");
+  row.style.cssText = "display:flex;gap:8px;align-items:center";
+  row.innerHTML = `
+    <input class="stock-input model-input" type="text" placeholder="مثال: iPhone 16" style="flex:1">
+    <button onclick="this.parentElement.remove()" style="background:rgba(255,77,77,.15);border:none;color:#ff4d4d;border-radius:8px;padding:8px 12px;cursor:pointer">✕</button>
+  `;
+  list.appendChild(row);
+};
+
+window.addNewColor = function() {
+  const newId = "color_" + Date.now();
+  const newColor = {
+    id: newId,
+    name: "لون جديد",
+    sub: "وصف جديد",
+    img: "https://via.placeholder.com/120?text=New"
+  };
+  colors.push(newColor);
+  renderColorRows(colors);
+};
+
+window.deleteColor = function(colorId) {
+  if (confirm("هل تريد حذف هذا اللون؟")) {
+    colors = colors.filter(c => c.id !== colorId);
+    renderColorRows(colors);
+    if (selectedColor === colorId) selectedColor = null;
+    renderColors();
+  }
+};
+
+window.saveAdminData = async function() {
+  const pass = document.getElementById("admin-pass").value;
+  if (pass !== ADMIN_PASS) return alert("كلمة السر غلط!");
+
+  // حفظ المخزون
+  const stockUpdates = {};
+  colors.forEach(c => {
+    const input = document.getElementById(`as_${c.id}`);
+    if (input) stockUpdates[c.id] = Math.max(0, parseInt(input.value) || 0);
+  });
+  await set(stockRef, stockUpdates);
+
+  // حفظ أنواع الهواتف
+  const modelInputs = document.querySelectorAll(".model-input");
+  const newModels = [...modelInputs].map(i => i.value.trim()).filter(Boolean);
+  await set(modelsRef, newModels);
+
+  // حفظ الألوان
+  const updatedColors = {};
+  document.querySelectorAll(".color-item-editor").forEach(editor => {
+    const colorId = editor.getAttribute("data-color-id");
+    const nameInput = editor.querySelector(`.color-name-input[data-color-id="${colorId}"]`);
+    const subInput = editor.querySelector(`.color-sub-input[data-color-id="${colorId}"]`);
+    const imgInput = editor.querySelector(`.color-img-input[data-color-id="${colorId}"]`);
+    if (nameInput && subInput && imgInput) {
+      updatedColors[colorId] = {
+        id: colorId,
+        name: nameInput.value.trim(),
+        sub: subInput.value.trim(),
+        img: imgInput.value.trim()
+      };
+    }
+  });
+  if (Object.keys(updatedColors).length) {
+    await set(colorsRef, updatedColors);
+  }
+
+  closeAdmin();
+  showToast("💾 تم حفظ جميع الإعدادات");
+};
+
+window.closeAdmin = function() {
+  document.getElementById("admin-overlay").classList.remove("open");
+};
+
+// ========== التهيئة والاستماع ==========
+async function ensureDefaults() {
+  try {
+    const [stockSnap, settingsSnap, modelsSnap, colorsSnap] = await Promise.all([
+      get(stockRef), get(settingsRef), get(modelsRef), get(colorsRef)
+    ]);
+    if (!stockSnap.exists()) await set(stockRef, {});
+    if (!settingsSnap.exists()) await set(settingsRef, {});
+    if (!modelsSnap.exists()) await set(modelsRef, []);
+    if (!colorsSnap.exists()) await set(colorsRef, {});
+  } catch (err) {
+    console.error("Auto-init error:", err);
+  }
+}
+
+let loadedCount = 0;
+function checkAllLoaded() {
+  loadedCount++;
+  if (loadedCount >= 4) {
+    dataLoaded = true;
+    renderSettingsToPage();
+    renderColors();
+    renderModels();
+    document.getElementById("connecting").style.display = "none";
+  }
+}
+
+onValue(stockRef, snap => {
+  stock = snap.val() || {};
+  checkAllLoaded();
+});
+onValue(settingsRef, snap => {
+  const val = snap.val();
+  pageSettings = val || {};
+  checkAllLoaded();
+});
+onValue(modelsRef, snap => {
+  const val = snap.val();
+  phoneModels = Array.isArray(val) ? val.filter(Boolean) : [];
+  checkAllLoaded();
+});
+onValue(colorsRef, snap => {
+  const val = snap.val();
+  colors = val ? Object.values(val) : [];
+  checkAllLoaded();
+});
+
+await ensureDefaults();
+
+setTimeout(() => {
+  trackTikTok("ViewContent");
+}, 1500);
+</script>
+</body>
+</html>
